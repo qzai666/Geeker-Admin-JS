@@ -47,8 +47,6 @@ Geeker-Admin-JS 一款基于 Vue3.4、Vite5、Pinia、Element-Plus 开源的后�
 - 图谱默认允许鼠标悬浮节点后高亮显示所直接关联的节点，其他节点变暗
 - ProTable 图谱功能展示
 
-![video](https://gitee.com/haimashale/geeker-admin-js/raw/master/md-resources/protable-graph.gif)
-
 ### 环境配置 ⚙️
 
 - `Node` ：18.12.0
@@ -113,7 +111,6 @@ pnpm commit
 ```
 
 ### 项目截图 📷
-
 
 - 表格图谱：
   ![table_graph_dark](./public/readme/graph2.png)

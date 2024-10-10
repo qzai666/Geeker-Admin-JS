@@ -5,7 +5,6 @@ import { visualizer } from "rollup-plugin-visualizer";
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
-import eslintPlugin from "vite-plugin-eslint";
 import viteCompression from "vite-plugin-compression";
 import vueSetupExtend from "unplugin-vue-setup-extend-plus/vite";
 import NextDevTools from "vite-plugin-vue-devtools";
@@ -21,7 +20,6 @@ export const createVitePlugins = viteEnv => {
     vue(),
     vueJsx(),
     VITE_DEVTOOLS && NextDevTools({ launchEditor: "code" }),
-    eslintPlugin(),
     vueSetupExtend({}),
     createHtmlPlugin({
       inject: {

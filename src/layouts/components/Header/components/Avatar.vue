@@ -5,14 +5,9 @@
     </div>
     <template #dropdown>
       <el-dropdown-menu>
-        <el-dropdown-item @click="openDialog('infoRef')">
-          <el-icon><User /></el-icon>{{ $t("header.personalData") }}
-        </el-dropdown-item>
-        <el-dropdown-item @click="openDialog('passwordRef')">
-          <el-icon><Edit /></el-icon>{{ $t("header.changePassword") }}
-        </el-dropdown-item>
         <el-dropdown-item divided @click="logout">
-          <el-icon><SwitchButton /></el-icon>{{ $t("header.logout") }}
+          <el-icon><SwitchButton /></el-icon>
+          退出登录
         </el-dropdown-item>
       </el-dropdown-menu>
     </template>
@@ -24,45 +19,45 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { LOGIN_URL } from "@/config";
-import { useRouter } from "vue-router";
-import { logoutApi } from "@/api/modules/login";
-import { useUserStore } from "@/stores/modules/user";
-import { ElMessageBox, ElMessage } from "element-plus";
-import InfoDialog from "./InfoDialog.vue";
-import PasswordDialog from "./PasswordDialog.vue";
-import { Edit, SwitchButton, User } from "@element-plus/icons-vue";
+import { ref } from 'vue'
+import { LOGIN_URL } from '@/config'
+import { useRouter } from 'vue-router'
+import { logoutApi } from '@/api/modules/login'
+import { useUserStore } from '@/stores/modules/user'
+import { ElMessageBox, ElMessage } from 'element-plus'
+import InfoDialog from './InfoDialog.vue'
+import PasswordDialog from './PasswordDialog.vue'
+import { Edit, SwitchButton, User } from '@element-plus/icons-vue'
 
-const router = useRouter();
-const userStore = useUserStore();
+const router = useRouter()
+const userStore = useUserStore()
 
 // 退出登录
 const logout = () => {
-  ElMessageBox.confirm("您是否确认退出登录?", "温馨提示", {
-    confirmButtonText: "确定",
-    cancelButtonText: "取消",
-    type: "warning"
+  ElMessageBox.confirm('您是否确认退出登录?', '温馨提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning',
   }).then(async () => {
     // 1.执行退出登录接口
-    await logoutApi();
+    await logoutApi()
 
     // 2.清除 Token
-    userStore.setToken("");
+    userStore.setToken('')
 
     // 3.重定向到登陆页
-    await router.replace(LOGIN_URL);
-    ElMessage.success("退出登录成功！");
-  });
-};
+    await router.replace(LOGIN_URL)
+    ElMessage.success('退出登录成功！')
+  })
+}
 
 // 打开修改密码和个人信息弹窗
-const infoRef = ref(null);
-const passwordRef = ref(null);
+const infoRef = ref(null)
+const passwordRef = ref(null)
 const openDialog = ref => {
-  if (ref === "infoRef") infoRef.value?.openDialog();
-  if (ref === "passwordRef") passwordRef.value?.openDialog();
-};
+  if (ref === 'infoRef') infoRef.value?.openDialog()
+  if (ref === 'passwordRef') passwordRef.value?.openDialog()
+}
 </script>
 
 <style scoped lang="scss">
